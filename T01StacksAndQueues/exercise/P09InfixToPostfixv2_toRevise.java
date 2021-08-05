@@ -12,12 +12,12 @@ public class P09InfixToPostfixv2_toRevise {
         String[] input = scan.nextLine().split(" ");
         ArrayDeque<String> operators = new ArrayDeque<>();
         ArrayDeque<String> expression = new ArrayDeque<>();
-        Map<String,Integer> priorites = new HashMap<>();
-        priorites.put("*", 3);
-        priorites.put("/", 3);
-        priorites.put("+", 2);
-        priorites.put("-", 2);
-        priorites.put("(", 1);
+        Map<String,Integer> priorities = new HashMap<>();
+        priorities.put("*", 3);
+        priorities.put("/", 3);
+        priorities.put("+", 2);
+        priorities.put("-", 2);
+        priorities.put("(", 1);
 
         for (String token : input) {
             try {
@@ -39,7 +39,7 @@ public class P09InfixToPostfixv2_toRevise {
                         }
                         break;
                     default:
-                        while (!operators.isEmpty() && priorites.get(operators.peek()) >= priorites.get(token)) {
+                        while (!operators.isEmpty() && priorities.get(operators.peek()) >= priorities.get(token)) {
                             expression.addLast(operators.pop());
                         }
                         operators.push(token);
